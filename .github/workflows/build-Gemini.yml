@@ -110,6 +110,8 @@ jobs:
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_XRAY=y/CONFIG_FIRMWARE_INCLUDE_XRAY=n/g' $TEMPLATE_PATH
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_V2RAY=y/CONFIG_FIRMWARE_INCLUDE_V2RAY=n/g' $TEMPLATE_PATH
         sed -i 's/CONFIG_FIRMWARE_INCLUDE_TROJAN=y/CONFIG_FIRMWARE_INCLUDE_TROJAN=n/g' $TEMPLATE_PATH
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OC=n/CONFIG_FIRMWARE_INCLUDE_OC=y/g' $TEMPLATE_PATH
+        sed -i 's/CONFIG_FIRMWARE_MT7621_OC="0x312"/CONFIG_FIRMWARE_INCLUDE_OC="0x362"/g' $TEMPLATE_PATH
         
         # --- 性能优化 ---
         sed -i 's/CONFIG_FIRMWARE_ENABLE_FLOWOFFLOAD=n/CONFIG_FIRMWARE_ENABLE_FLOWOFFLOAD=y/g' $TEMPLATE_PATH
@@ -151,6 +153,7 @@ jobs:
           - 编译日期: ${{ env.DATE }}
           - 插件: 纯净版
           - 硬件加速: 开启 (Flow Offload)
+          - 开启超频到:1100MHz
         files: ${{ env.FIRMWARE_PATH }}/*.trx
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
